@@ -3,22 +3,38 @@
  */
 var API_URL = "http://localhost:5050";
 
+function backendGet(url, callback) {
+    $.ajax({
+        url: API_URL + url,
+        type: 'GET',
+        success: function(data){
+            callback(null, data);
+        },
+        fail: function() {
+            callback(new Error("Ajax Failed"));
+        }
+    })
+}
+
+function backendPost(url, data, callback) {
+    $.ajax({
+        url: API_URL + url,
+        type: 'POST',
+        contentType : 'application/json',
+        data: JSON.stringify(data),
+        success: function(data){
+            callback(null, data);
+        },
+        fail: function() {
+            callback(new Error("Ajax Failed"));
+        }
+    })
+}
+
 exports.getPizzaList = function(callback) {
-    $.get(API_URL + "/api/get-pizza-list/", function( data ) {
-        console.log("Get Pizza Success", data);
-        callback(null, data);
-    }).fail(function() {
-        console.error("Get Pizza Failed");
-        callback(new Error("Can not get pizza"));
-    });
+    backendGet("/api/get-pizza-list/", callback);
 };
 
 exports.createOrder = function(order_info, callback) {
-    $.post(API_URL + "/api/create-order/", order_info, function( data ) {
-        console.log("Create order success", data);
-        callback(null, data);
-    }).fail(function() {
-        console.error("Create order failed");
-        callback(new Error("Can not create order"));
-    });
+    backendPost("/api/create-order/", order_info, callback);
 };
