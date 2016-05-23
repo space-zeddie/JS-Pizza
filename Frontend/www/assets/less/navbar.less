@@ -4,7 +4,10 @@
     
     .brand {
         background-color: @primary-colour;
+        margin-top: -10px;
+        height: 100px;
         color: white;
+        position: absolute;
         
         .thingy {
             top: 90px;
@@ -18,8 +21,8 @@
             &.inverse-thingy {
                 width: 140px;
                 height: 11px;
-                top: 67%;
-                left: -1px;
+                top: 100%;
+                left: 3.5px;
                 background-image: url(../images/discount.svg);
                 background-size: cover;
                 background-repeat: no-repeat;
@@ -30,7 +33,11 @@
         }
     }
     
-    .info-bar {
+    .info {
+        
+        padding-left: 10%;
+        
+        .info-bar {
         color: @light-gray;
         padding: 10px 10px 10px 5px;
         margin: 10px 10px 10px 0px;
@@ -58,5 +65,6 @@
         margin: 0;
         margin-bottom: 5px;
         padding: 0; 
+    }
     }
 }
