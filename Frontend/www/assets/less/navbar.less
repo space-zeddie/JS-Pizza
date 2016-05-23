@@ -5,6 +5,29 @@
     .brand {
         background-color: @primary-colour;
         color: white;
+        
+        .thingy {
+            top: 90px;
+            -moz-transform: scaleY(-1);
+            -o-transform: scaleY(-1);
+            -webkit-transform: scaleY(-1);
+            transform: scaleY(-1);
+            filter: FlipV;
+            -ms-filter: "FlipV";
+            
+            &.inverse-thingy {
+                width: 100px;
+                height: 11px;
+                top: -11px;
+                left: -1px;
+                background-image: url(../images/discount.svg);
+                background-size: 100px 11px;
+                background-repeat: no-repeat;
+                padding: 0!important;
+                margin: 0!important;
+                position: absolute;
+            }
+        }
     }
     
     .info-bar {
