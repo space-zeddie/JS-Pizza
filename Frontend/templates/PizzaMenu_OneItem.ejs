@@ -22,9 +22,9 @@ function getIngredientsArray(pizza) {
         <img class="pizza-icon" src="<%= pizza.icon %>" alt="Pizza">
 
         <% if(pizza.is_new) { %>
-        <span class="label label-danger">Нова</span>
+        <span class="label label-danger">New</span>
         <% } else if(pizza.is_popular) {%>
-        <span class="label label-success">Популярна</span>
+        <span class="label label-success">Popular</span>
         <% } %>
 
         <div class="caption">
@@ -37,10 +37,10 @@ function getIngredientsArray(pizza) {
 
         <div class="container-fluid">
             <div class="col-sm-6">
-                <button class="btn btn-primary buy-small">Купити</button>
+                <button class="btn btn-primary buy-small">Buy</button>
             </div>
             <div class="col-sm-6">
-                <button class="btn btn-primary buy-big">Купити</button>
+                <button class="btn btn-primary buy-big">Buy</button>
             </div>
         </div>
         <!-- Перед тим щоб показати кнопку необхідно переконатися, що піца має великий розмір -->
