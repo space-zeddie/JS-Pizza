@@ -6,6 +6,9 @@
         background-color: @primary-colour;
         margin-top: -10px;
         height: 100px;
+        width: 100px;
+        text-align: center;
+        margin-left: 5px;
         color: white;
         position: absolute;
         
@@ -22,9 +25,9 @@
                 width: 140px;
                 height: 11px;
                 top: 100%;
-                left: 3.5px;
+                left: 0px;
                 background-image: url(../images/discount.svg);
-                background-size: cover;
+                background-size: 100px;
                 background-repeat: no-repeat;
                 padding: 0!important;
                 margin: 0!important;
@@ -38,27 +41,29 @@
         padding-left: 10%;
         
         .info-bar {
-        color: @light-gray;
-        padding: 10px 10px 10px 5px;
-        margin: 10px 10px 10px 0px;
+            color: @light-gray;
+            display: inline-block;
+            padding: 0px 10px 0px 5px;
+            margin: 5px 10px 0px 0px;
         
-        &.important {
-            color: white;
-            display: block;
-            margin: 0;
+            &.important {
+                color: white;
+                display: block;
+                margin: 0;
+            }
         }
-    }
     
     #login {
         float: right;
         background-color: @primary-colour;
         color: white;
+        margin-bottom: 4px;
     }
     
     .hor-line {
         display: inline-block;
         float: right;
-        width: 90%;
+        width: 99.5%;
         height: 1px;
         border: 0;
         background-color: @light-gray;
