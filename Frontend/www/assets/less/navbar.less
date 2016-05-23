@@ -1,0 +1,39 @@
+.translucent .container-fluid {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    
+    .brand {
+        background-color: @primary-colour;
+        color: white;
+    }
+    
+    .info-bar {
+        color: @light-gray;
+        padding: 10px 10px 10px 5px;
+        margin: 10px 10px 10px 0px;
+        
+        &.important {
+            color: white;
+            display: block;
+            margin: 0;
+        }
+    }
+    
+    #login {
+        float: right;
+        background-color: @primary-colour;
+        color: white;
+    }
+    
+    .hor-line {
+        display: inline-block;
+        float: right;
+        width: 90%;
+        height: 1px;
+        border: 0;
+        background-color: @light-gray;
+        margin: 0;
+        margin-bottom: 5px;
+        padding: 0; 
+    }
+}
