@@ -5,6 +5,8 @@
     .brand {
         background-color: @primary-colour;
         margin-top: -10px;
+        padding-top: 25px;
+        font-size: 20px;
         height: 100px;
         width: 100px;
         text-align: center;
@@ -38,18 +40,23 @@
     
     .info {
         
-        padding-left: 10%;
+        padding-left: 120px;
         
         .info-bar {
             color: @light-gray;
             display: inline-block;
             padding: 0px 10px 0px 5px;
-            margin: 5px 10px 0px 0px;
+            margin: 0px 10px 0px 0px;
+            
+            &.phone-number {
+                font-size: 20px;
+            }
         
             &.important {
                 color: white;
                 display: block;
                 margin: 0;
+                font-size: 15px;
             }
         }
     
@@ -58,6 +65,7 @@
         background-color: @primary-colour;
         color: white;
         margin-bottom: 4px;
+        border-color: @border-primary-colour;
     }
     
     .hor-line {
