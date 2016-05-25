@@ -37,9 +37,25 @@ function getIngredientsArray(pizza) {
 
         <div class="container-fluid">
             <div class="col-sm-6">
+                <div>
+                    <img class="size-icon" src="assets/images/weight.svg">
+                    <span class="size-text"> <%= pizza.small_size.weight %>g </span>
+                </div>
+                <div class="price">
+                    <h2> <%= pizza.small_size.price %> </h2>
+                    <div>грн</div>
+                </div>
                 <button class="btn btn-primary buy-small">Buy</button>
             </div>
             <div class="col-sm-6">
+                <div>
+                    <img class="size-icon" src="assets/images/weight.svg">
+                    <span class="size-text"> <%= pizza.big_size.weight %>g </span>
+                    <div class="price">
+                        <h2> <%= pizza.small_size.price %> </h2>
+                    <div>грн</div>
+                </div>
+                </div>
                 <button class="btn btn-primary buy-big">Buy</button>
             </div>
         </div>
