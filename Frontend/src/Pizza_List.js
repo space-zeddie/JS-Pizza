@@ -5,7 +5,7 @@
 var pizza_info = [
     {
         id:1,
-        icon:'assets/images/noodles2.png',
+        icon:'assets/images/rsz_1noodles1.png',
         title: "Імпреза",
         type: 'М’ясна піца',
         content: {
