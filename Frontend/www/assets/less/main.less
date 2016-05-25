@@ -37,6 +37,31 @@
             margin: 5px 5px 0px 10px;
         }
         
-        
+        .nav.filter-nav {
+            font-size: 15px;
+            text-align: center;
+            margin: 5px 0px 20px 25px;
+            
+            li {
+                display: inline-block;
+                padding: 0px;  
+                margin: 1px;
+                a {                    
+                    padding: 10px 15px;
+                    border-radius: 4px;
+                    color: @primary-colour;
+                    
+                
+                    &:hover {
+                        background-color: #D9DDDE;
+                    }              
+                    
+                    &:focus {
+                        color: white;
+                        background-color: @primary-colour;
+                    }
+                }
+            }
+        }
     }
 }
