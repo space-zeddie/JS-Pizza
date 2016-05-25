@@ -2,7 +2,9 @@
     
     height: @card-height;
     
-    img {
+    .thumbnail {    
+        
+        img {
         max-width: 250px;
     }
     
@@ -18,14 +20,37 @@
         background-color: lighten(@mainColor, 45%);
     }
     
-    .title {
-        color: @primary-colour;
-        font-weight: bold;
-        font-size: 25px;
-    }
+    .info-col {
+        text-align: center;
+        
+            .title {
+                color: @primary-colour;
+                font-weight: bold;
+                font-size: 25px;
+            }
     
-    .type {
-        font-size: 13px;
-        color: gray;
+            .type {
+                font-size: 13px;
+                color: gray;
+            }
+    
+            .description {
+                /* text-transform: capitalize; */
+            }
+    
+            .price {
+                margin-top: 20px;
+                text-align: center;
+                h2 {
+                    margin-top: 10px;
+                    width: 100%;
+                    text-align: center;
+                }
+                .currency {
+                    /* padding-left: 15px;  */   
+                    width: 100%;
+                }
+            }
+        }
     }
 }
