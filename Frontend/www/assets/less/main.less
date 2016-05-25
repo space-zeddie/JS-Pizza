@@ -21,16 +21,22 @@
         margin: 0px;
     }
     
-    .food-nav {
-        text-align: center;
+    #cart {
+       /* box-shadow: 10px 10px 5px #888888;*/
+        position: fixed !important;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        border: 1px solid gray;
+        padding-top: 35px;
         
-        .nav-title {
-            font-size: 30px;
-            display: inline-block;
-            
+        .heading {
+            position: inherit;
+            visibility: visible;
         }
-        
-        .number-badge {
+    }
+    
+    .number-badge {
             display: inline-block;
             background-color: @primary-colour;
             font-size: 15px;
@@ -40,6 +46,16 @@
             color: white;
             position: absolute;
             margin: 5px 5px 0px 10px;
+        }
+        
+    
+    .food-nav {
+        text-align: center;
+        
+        .nav-title {
+            font-size: 30px;
+            display: inline-block;
+            
         }
         
         .nav.filter-nav {
