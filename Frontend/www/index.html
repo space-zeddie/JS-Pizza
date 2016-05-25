@@ -15,41 +15,45 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-fixed-top translucent">
-        <div class="container-fluid">
-            <a class="navbar-brand brand" href="#">ZOMBIE KMA
-                <div class="thingy inverse-thingy"></div>
-            </a>
-            <div class="info">
-                <span class="info-bar phone-number">(044) 000 0 000</span>
-                <span class="info-bar">24 hrs / 7 days a week</span>
-                <span class="info-bar">Free delivery</span>
-                <button type="button" class="btn btn-primary" id="login">Log in</button>
-                <span class="hor-line"></span>
-                <span class="info-bar important">Brain dishes</span>
-            </div>
-        </div>
-    </nav>
+   <div class="container-fluid">
+    <div class="col-sm-9 main">
+        <nav class="navbar navbar-fixed-top translucent">
+            <!--<div class="container-fluid">-->
+                <a class="navbar-brand brand" href="#">ZOMBIE KMA
+                    <div class="thingy inverse-thingy"></div>
+                </a>
+                <div class="info">
+                    <span class="info-bar phone-number">(044) 000 0 000</span>
+                    <span class="info-bar">24 hrs / 7 days a week</span>
+                    <span class="info-bar">Free delivery</span>
+                    <button type="button" class="btn btn-primary" id="login">Log in</button>
+                    <span class="hor-line"></span>
+                    <span class="info-bar important">Brain dishes</span>
+                </div>
+           <!-- </div>-->
+        </nav>
     
-<div class="container">
-    <div class="row food-nav">
-        <h2>
-            <span class="nav-title">All items</span>
-            <span class="number-badge">5</span>
-        </h2>
-        <div class="row filter-switch">
-            <ul class="nav filter-nav">
-                <li role="presentation" class="active filter-btn"><a href="#">All</a></li>
-                <li role="presentation" class="filter-btn"><a href="#">Spicy</a></li>
-                <li role="presentation" class="filter-btn"><a href="#">With eyeballs</a></li>
-                <li role="presentation" class="active filter-btn"><a href="#">Vegan</a></li>
-                <li role="presentation" class="active filter-btn"><a href="#">Drinks</a></li>
-            </ul>
-        </div>
+       <!-- <div class="container">-->
+            <div class="row food-nav">
+                <h2>
+                    <span class="nav-title">All items</span>
+                    <span class="number-badge">5</span>
+                </h2>
+                <div class="row filter-switch">
+                <ul class="nav filter-nav">
+                    <li role="presentation" class="active filter-btn"><a href="#">All</a></li>
+                    <li role="presentation" class="filter-btn"><a href="#">Spicy</a></li>
+                    <li role="presentation" class="filter-btn"><a href="#">With eyeballs</a></li>
+                    <li role="presentation" class="active filter-btn"><a href="#">Vegan</a></li>
+                    <li role="presentation" class="active filter-btn"><a href="#">Drinks</a></li>
+                </ul>
+                </div>
+            </div>
+        <div class="row" id="pizza_list"></div>
+      <!-- </div>-->
     </div>
-    <div class="row" id="pizza_list"></div>
-    <div id="cart"></div>
-</div>
+    <div class="col-sm-3" id="cart"></div>
+    </div>
 
 <!-- jQuery JavaScript -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"> </script>
