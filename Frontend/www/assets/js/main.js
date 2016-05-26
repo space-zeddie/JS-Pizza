@@ -217,7 +217,9 @@ function incItem(cart_item) {
 
 function updateCart() {
     var $price = $('.panel-footer .total.price');
+    var $quantity = $('.cart-count.number-badge');
     var price = 0;
+    var quantity = 0;
     
     $cart.html("");
     $price.html("");
@@ -229,6 +231,7 @@ function updateCart() {
 
         var $node = $(html_code);
         price += cart_item.quantity * parseInt(cart_item.pizza[cart_item.size].price);
+        quantity += cart_item.quantity;
 
         $node.find(".plus").click(function() {
             incItem(cart_item);
@@ -252,6 +255,7 @@ function updateCart() {
 
     Cart.forEach(showOnePizzaInCart);
     $price.html(price + " USD");
+    $quantity.html(quantity);
     
     if (Cart.length > 0) {
         $('.panel-footer .total').css('visibility', 'visible');
