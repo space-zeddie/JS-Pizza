@@ -11,6 +11,7 @@ var $pizza_list = $("#pizza_list");
 function showPizzaList(list) {
     //Очищаємо старі піци в кошику
     $pizza_list.html("");
+    $('.clear-cart').click(PizzaCart.clearCart);
 
     //Онволення однієї піци
     function showOnePizza(pizza) {

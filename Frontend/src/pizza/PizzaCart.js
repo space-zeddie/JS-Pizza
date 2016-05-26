@@ -42,6 +42,11 @@ function removeFromCart(cart_item) {
     updateCart();
 }
 
+function clearCart() {
+    Cart = [];
+    updateCart();
+}
+
 function initialiseCart() {
     //Фукнція віпрацьвуватиме при завантаженні сторінки
     //Тут можна наприклад, зчитати вміст корзини який збережено в Local Storage то показати його
@@ -113,6 +118,7 @@ function updateCart() {
 
 exports.removeFromCart = removeFromCart;
 exports.addToCart = addToCart;
+exports.clearCart = clearCart;
 
 exports.getPizzaInCart = getPizzaInCart;
 exports.initialiseCart = initialiseCart;
