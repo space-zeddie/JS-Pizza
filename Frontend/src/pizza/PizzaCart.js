@@ -38,7 +38,6 @@ function addToCart(pizza, size) {
 
 function removeFromCart(cart_item) {
     //Видалити піцу з кошика
-    //TODO: треба зробити
     Cart.splice(Cart.indexOf(cart_item), 1);
     //Після видалення оновити відображення
     updateCart();
@@ -85,13 +84,16 @@ function updateCart() {
         });
         
         $node.find(".minus").click(function(){
-            cart_item.quantity -= 1;
-            if (cart_item.quantity < 1)
-                removeItem(cart_item);
+            if (cart_item.quantity <= 1)
+                removeFromCart(cart_item);
+            else {
+                cart_item.quantity -= 1;
+                updateCart();
+            }            
         });
         
         $node.find(".remove").click(function(){
-            removeItem(cart_item);
+            removeFromCart(cart_item);
         });
 
         $cart.append($node);
