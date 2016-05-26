@@ -168,23 +168,30 @@ var Cart = [];
 var $cart = $("#cart");
 
 function addToCart(pizza, size) {
-    //Додавання однієї піци в кошик покупок
-
-    //Приклад реалізації, можна робити будь-яким іншим способом
-    Cart.push({
+    console.log('addToCart');
+    var item = {
         pizza: pizza,
         size: size,
         quantity: 1
+    };
+    var hasItem = false;
+    Cart.forEach(function(val) {
+        if (val.pizza === pizza && val.size === size) {
+            hasItem = true;
+            val.quantity++;
+        }
     });
+    
+    if (!hasItem)
+        Cart.push(item);
 
-    //Оновити вміст кошика на сторінці
     updateCart();
 }
 
 function removeFromCart(cart_item) {
     //Видалити піцу з кошика
     //TODO: треба зробити
-
+    Cart.splice(Cart.indexOf(cart_item), 1);
     //Після видалення оновити відображення
     updateCart();
 }
@@ -202,6 +209,11 @@ function getPizzaInCart() {
     return Cart;
 }
 
+function incItem(cart_item) {
+    cart_item.quantity += 1;
+    updateCart();
+}
+
 function updateCart() {
     //Функція викликається при зміні вмісту кошика
     //Тут можна наприклад показати оновлений кошик на екрані та зберегти вміт кошика в Local Storage
@@ -211,23 +223,27 @@ function updateCart() {
 
     //Онволення однієї піци
     function showOnePizzaInCart(cart_item) {
+        
         var html_code = Templates.PizzaCart_OneItem(cart_item);
 
         var $node = $(html_code);
+        
+        function removeItem() {
+            
+        }
 
-        $node.find(".plus").click(function(){
-            //Збільшуємо кількість замовлених піц
-            cart_item.quantity += 1;
-
-            //Оновлюємо відображення
-            updateCart();
+        $node.find(".plus").click(function() {
+            incItem(cart_item);
         });
         
         $node.find(".minus").click(function(){
             cart_item.quantity -= 1;
             if (cart_item.quantity < 1)
-                Cart.splice(Cart.indexOf(cart_item), 1);
-            updateCart();
+                removeItem(cart_item);
+        });
+        
+        $node.find(".remove").click(function(){
+            removeItem(cart_item);
         });
 
         $cart.append($node);
