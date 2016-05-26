@@ -29,6 +29,12 @@
         @remove-colour-top: #F5F5F5;
         @remove-colour-bottom: #DBDBDB;
         
+        @add-colour-top: #42CC33;
+        @add-colour-bottom: #29A81B;
+        
+        @minus-colour-top: #E85241;
+        @minus-colour-bottom: #CC3423;
+         
         &.remove {
             color: @primary-colour;
             background: linear-gradient(@remove-colour-top, @remove-colour-bottom);
@@ -36,6 +42,25 @@
             background: -moz-linear-gradient(@remove-colour-top, @remove-colour-bottom);
             background: -o-linear-gradient(@remove-colour-top, @remove-colour-bottom);
             border-color: #CCCCCC;
+        }
+        
+        &.plus {
+            background: linear-gradient(@add-colour-top, @add-colour-bottom);
+            background: -webkit-linear-gradient(@add-colour-top, @add-colour-bottom);
+            background: -moz-linear-gradient(@add-colour-top, @add-colour-bottom);
+            background: -o-linear-gradient(@add-colour-top, @add-colour-bottom);
+        }
+        
+        &.minus {
+            background: linear-gradient(@minus-colour-top, @minus-colour-bottom);
+            background: -webkit-linear-gradient(@minus-colour-top, @minus-colour-bottom);
+            background: -moz-linear-gradient(@minus-colour-top, @minus-colour-bottom);
+            background: -o-linear-gradient(@minus-colour-top, @minus-colour-bottom);
+            padding: 3px 13.5px;
+        }
+        
+        &:focus, &:active, &:visited {
+            outline: none;
         }
     }
 }
