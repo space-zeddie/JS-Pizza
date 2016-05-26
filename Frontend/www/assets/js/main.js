@@ -222,6 +222,13 @@ function updateCart() {
             //Оновлюємо відображення
             updateCart();
         });
+        
+        $node.find(".minus").click(function(){
+            cart_item.quantity -= 1;
+            if (cart_item.quantity < 1)
+                Cart.splice(Cart.indexOf(cart_item), 1);
+            updateCart();
+        });
 
         $cart.append($node);
     }
