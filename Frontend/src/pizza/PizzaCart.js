@@ -16,7 +16,6 @@ var Cart = [];
 var $cart = $("#cart");
 
 function addToCart(pizza, size) {
-    console.log('addToCart');
     var item = {
         pizza: pizza,
         size: size,
@@ -47,7 +46,10 @@ function initialiseCart() {
     //Фукнція віпрацьвуватиме при завантаженні сторінки
     //Тут можна наприклад, зчитати вміст корзини який збережено в Local Storage то показати його
     //TODO: ...
-
+    if (Cart.length < 1) {
+        $('.panel-footer .total').css('visibility', 'hidden');
+        $('.panel-footer .total .price').css('visibility', 'hidden');
+    }
     updateCart();
 }
 
@@ -62,11 +64,11 @@ function incItem(cart_item) {
 }
 
 function updateCart() {
-    //Функція викликається при зміні вмісту кошика
-    //Тут можна наприклад показати оновлений кошик на екрані та зберегти вміт кошика в Local Storage
-
-    //Очищаємо старі піци в кошику
+    var $price = $('.panel-footer .total.price');
+    var price = 0;
+    
     $cart.html("");
+    $price.html("");
 
     //Онволення однієї піци
     function showOnePizzaInCart(cart_item) {
@@ -74,10 +76,7 @@ function updateCart() {
         var html_code = Templates.PizzaCart_OneItem(cart_item);
 
         var $node = $(html_code);
-        
-        function removeItem() {
-            
-        }
+        price += cart_item.quantity * parseInt(cart_item.pizza[cart_item.size].price);
 
         $node.find(".plus").click(function() {
             incItem(cart_item);
@@ -100,6 +99,11 @@ function updateCart() {
     }
 
     Cart.forEach(showOnePizzaInCart);
+    $price.html(price + " USD");
+    
+    if (Cart.length > 0) {
+        $('.panel-footer .total').css('visibility', 'visible');
+    }
 
 }
 
