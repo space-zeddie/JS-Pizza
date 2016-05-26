@@ -2,6 +2,7 @@
 @card-height: 500px;
 @light-gray: #8C8E8F;
 @primary-colour: #37BD28;
+@gradtop-colour: #5DD64F;//#4BCF3C;
 @border-primary-colour: #429C38;
 
 @import "pizza/pizza-card";
@@ -9,9 +10,20 @@
 @import "pizza/cart-item";
 
 .btn-primary {
-     background-color: @primary-colour;
-     color: white;        
-     border-color: @border-primary-colour;
+    background-color: @primary-colour;
+    border-color: @border-primary-colour;
+    color: white;        
+    background: -webkit-linear-gradient(@gradtop-colour, @primary-colour);
+    background: -o-linear-gradient(@gradtop-colour, @primary-colour);
+    background: -moz-linear-gradient(@gradtop-colour, @primary-colour);
+    background: linear-gradient(@gradtop-colour, @primary-colour);
+    
+    &:hover {
+        background: none;
+        background-color: @primary-colour;
+        outline: none;
+        border-color: @border-primary-colour;
+    }
 }
 
 .container-fluid {    
