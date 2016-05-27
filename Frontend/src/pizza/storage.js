@@ -7,5 +7,5 @@ exports.get = function(key)	{
 };
 
 exports.set = function(key,	value) {
-    return basil.set(key,	value);
+    return basil.set(key, value);
 };
