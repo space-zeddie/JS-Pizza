@@ -2,13 +2,16 @@
     margin: 0;
     margin-bottom: 20px;
     
-   /* height: @card-height;*/
+   height: @card-height;
     
     .thumbnail {    
         
         img {
-        max-width: 250px;
-    }
+            max-width: 250px;
+            &.pizza-icon {
+                height: 250px;
+            }
+        }
     
     .label {
         position: absolute;
@@ -22,8 +25,23 @@
         background-color: lighten(@mainColor, 45%);
     }
         
-        .container-fluid {
+        .container-fluid{
             padding-top: 20px;
+            
+        }
+        
+        .caption {
+            height: 100px;
+            
+            .title {
+                font-size: 20px;
+                color: @primary-colour;
+            }
+            
+            .type {
+                font-size: 10px;
+                color: @light-gray;
+            }
         }
     
     .info-col {

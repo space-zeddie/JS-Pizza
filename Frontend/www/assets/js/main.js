@@ -7,14 +7,13 @@ var pizza_info = [
     {
         id:1,
         icon:'assets/images/rsz_1noodles1.png',
-        title: "Імпреза",
-        type: 'М’ясна піца',
+        title: "Braingetti",
+        type: 'Vegan',
         content: {
-            meat: ['балик', 'салямі'],
-            chicken: ['куриця'],
-            cheese: ['сир моцарелла', 'сир рокфорд'],
-            pineapple: ['ананаси'],
-            additional: ['томатна паста', 'петрушка']
+            brain: ['college student (Culturology)', 'Italian chef'],
+            sauce: ['Sriracha', 'Worchestershire'],
+            toppings: ['paprika'],
+            additional: ['palm sugar']
         },
         small_size:{
             weight: 370,
@@ -33,13 +32,14 @@ var pizza_info = [
     {
         id:2,
         icon:'assets/images/ramen.png',
-        title: "BBQ",
-        type: 'М’ясна піца',
+        title: "Blue Ramen",
+        type: 'Zombified Classic',
         content: {
-            meat: ['мисливські ковбаски', 'ковбаски папероні', 'шинка'],
-            cheese: ['сир домашній'],
-            mushroom: ['шампінйони'],
-            additional: ['петрушка', 'оливки']
+            brain: ['pianist', 'kendo master'],
+            sauce: ['Royal Blue'],
+            meat: ['duck'],
+            bodyparts: ['curdled blood'],
+            additional: ['nori', 'ramen noodles', 'sesame']
         },
         small_size:{
             weight: 460,
