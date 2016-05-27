@@ -206,9 +206,8 @@ function initialiseCart() {
     if (!Cart)
         Cart = [];
         
-    else if (Cart.length < 1) {
+    if (Cart.length < 1) {
         $('.panel-footer .total').css('visibility', 'hidden');
-        $('.panel-footer .total .price').css('visibility', 'hidden');
     }
     
     updateCart();
@@ -270,7 +269,8 @@ function updateCart() {
     
     if (Cart.length > 0) {
         $('.panel-footer .total').css('visibility', 'visible');
-    }
+    } else
+        $('.panel-footer .total').css('visibility', 'hidden');
 
 }
 
