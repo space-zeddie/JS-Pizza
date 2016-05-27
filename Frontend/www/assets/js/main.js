@@ -56,13 +56,13 @@ var pizza_info = [
     {
         id:3,
         icon:'assets/images/eyeballs.png',
-        title: "Міксовий поло",
-        type: 'М’ясна піца',
+        title: "Eye-Catcher",
+        type: 'Vegan Zombie Dessert',
         content: {
-            meat: ['вітчина', 'куриця копчена'],
-            cheese: ['сир моцарелла'],
-            pineapple: ['ананаси'],
-            additional: ['кукурудза', 'петрушка', 'соус томатний']
+            brain: ['flight attendant', 'actress'],
+            sauce: ['blackberry sauce'],
+            bodyparts: ['steamed eyeballs'],
+            additional: ['aquafaba cream', 'blackberries', 'blackcurrant']
         },
         small_size:{
             weight: 430,
@@ -77,14 +77,13 @@ var pizza_info = [
     },
     {
         id:4,
-        icon:'assets/images/cocktail.png',
-        title: "Сициліано",
-        type: 'М’ясна піца',
+        icon:'assets/images/cupcake.png',
+        title: "Sweet tooth",
+        type: 'Zombie Dessert',
         content: {
-            meat: ['вітчина', 'салямі'],
-            cheese: ['сир моцарелла'],
-            mushroom: ['шампінйони'],
-            additional: ['перець болгарський',  'соус томатний']
+            meat: ['schoolgirl'],
+            toppings: ['whipped cream', 'strawberry syrup'],
+            additional: ['muffin']
         },
         small_size:{
             weight: 450,
@@ -99,13 +98,14 @@ var pizza_info = [
     },
     {
         id:5,
-        icon:'assets/images/cupcake.png',
-        title: "Маргарита",
-        type: 'Вега піца',
+        icon:'assets/images/cocktail.png',
+        title: "Oneshot",
+        type: 'Zombie drink',
         content: {
-            cheese: ['сир моцарелла', 'сир домашній'],
-            tomato: ['помідори'],
-            additional: ['базилік', 'оливкова олія', 'соус томатний']
+            brain: ['fraternity brother', 'sorority sister'],
+            toppings: ['gin', 'tonic water', 'lime juice'],
+            bodyparts: ['pickled eyeballs'],
+            additional: ['syrup']
         },
         small_size:{
             weight: 370,
