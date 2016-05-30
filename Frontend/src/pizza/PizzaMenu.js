@@ -8,6 +8,20 @@ var Pizza_List = require('../Pizza_List');
 //HTML едемент куди будуть додаватися піци
 var $pizza_list = $("#pizza_list");
 
+var filters = {
+    'none': noFilter,
+    'spicy': null,
+    'eyes': null,
+    'vegan': null,
+    'drinks': null
+};
+
+function noFilter(pizza) { return true; }
+
+function spicyFilter(pizza) {
+    
+}
+
 function showPizzaList(list) {
     //Очищаємо старі піци в кошику
     $pizza_list.html("");

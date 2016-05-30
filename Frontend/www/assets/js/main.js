@@ -16,12 +16,12 @@ var pizza_info = [
             additional: ['palm sugar']
         },
         small_size:{
-            weight: 370,
+            weight: 246,
             size: 30,
             price: 99
         },
         big_size:{
-            weight: 660,
+            weight: 400,
             size: 40,
             price: 169
         },
@@ -42,12 +42,12 @@ var pizza_info = [
             additional: ['nori', 'ramen noodles', 'sesame']
         },
         small_size:{
-            weight: 460,
+            weight: 230,
             size: 30,
             price: 139
         },
         big_size:{
-            weight: 840,
+            weight: 460,
             size: 40,
             price: 199
         },
@@ -65,12 +65,12 @@ var pizza_info = [
             additional: ['aquafaba cream', 'blackberries', 'blackcurrant']
         },
         small_size:{
-            weight: 430,
+            weight: 300,
             size: 30,
             price: 115
         },
         big_size:{
-            weight: 780,
+            weight: 610,
             size: 40,
             price: 179
         }
@@ -86,12 +86,12 @@ var pizza_info = [
             additional: ['muffin']
         },
         small_size:{
-            weight: 450,
+            weight: 25,
             size: 30,
             price: 111
         },
         big_size:{
-            weight: 790,
+            weight: 70,
             size: 40,
             price: 169
         }
@@ -100,7 +100,7 @@ var pizza_info = [
         id:5,
         icon:'assets/images/cocktail.png',
         title: "Oneshot",
-        type: 'Zombie drink',
+        type: 'Zombie Drink',
         content: {
             brain: ['fraternity brother', 'sorority sister'],
             toppings: ['gin', 'tonic water', 'lime juice'],
@@ -108,12 +108,12 @@ var pizza_info = [
             additional: ['syrup']
         },
         small_size:{
-            weight: 370,
+            weight: 50,
             size: 30,
             price: 89
         },
         big_size:{
-            weight: 780,
+            weight: 100,
             size: 40,
             price: 179
         }
@@ -292,6 +292,20 @@ var Pizza_List = require('../Pizza_List');
 
 //HTML едемент куди будуть додаватися піци
 var $pizza_list = $("#pizza_list");
+
+var filters = {
+    'none': noFilter,
+    'spicy': null,
+    'eyes': null,
+    'vegan': null,
+    'drinks': null
+};
+
+function noFilter(pizza) { return true; }
+
+function spicyFilter(pizza) {
+    
+}
 
 function showPizzaList(list) {
     //Очищаємо старі піци в кошику
