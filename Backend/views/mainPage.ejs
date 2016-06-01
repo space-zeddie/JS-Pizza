@@ -1,7 +1,52 @@
 <% include common/header.ejs %>
+    
+       <!-- <div class="container">-->
+            <div class="row food-nav">
+                <h2>
+                    <span class="nav-title">All items</span>
+                    <span class="number-badge">5</span>
+                </h2>
+                <div class="row filter-switch">
+                <ul class="nav filter-nav">
+                    <li role="presentation" class="active filter-btn"><a href="#">All</a></li>
+                    <li role="presentation" class="filter-btn"><a href="#">Spicy</a></li>
+                    <li role="presentation" class="filter-btn"><a href="#">With eyeballs</a></li>
+                    <li role="presentation" class="active filter-btn"><a href="#">Vegan</a></li>
+                    <li role="presentation" class="active filter-btn"><a href="#">Drinks</a></li>
+                </ul>
+                </div>
+            </div>
+        <div class="row" id="pizza_list"></div>
+      <!-- </div>-->
+    </div>
+    <div class="col-sm-3 right-panel">
+        <div class="heading">
+            <span class="cart-heading">Order</span>
+            <span class="cart-count number-badge">0</span>
+            <span class="clear-cart"><a href="#">Clear the cart</a></span>
+        </div>
+        <div class="panel">
+        <div class="cart">
+            <div id="cart"></div>
+        </div>
+        <div class="panel-footer">
+            <span class="total">Total</span>
+            <span class="total price">0 USD</span>
+            <button type="button" class="btn btn-primary" id="order">Order</button>
+        </div>
+        </div>
+    </div>
+    </div>
 
-<div class="">
-    Main Page Content
-</div>
+<!-- jQuery JavaScript -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"> </script>
+
+<!--Bootsrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!--Own JavaScript -->
+<script type="text/javascript"  src="Frontend/www/assets/js/main.js"> </script>
+</body>
+</html>
 
 <% include common/footer.ejs %>
