@@ -8,11 +8,17 @@ function init() {
     }
 
     function checkPhoneInput(input) {
-        return true;
+        var phoneNum = /^\+380[0-9]{9}$/;
+        if (input !== '' && input.match(phoneNum))
+            return true;
+        return false;
     }
 
     function checkAddressInput(input) {
-        return true;
+        var letters = /^[A-Za-z]+$/;
+        if (input !== '' && input.match(letters))
+            return true;
+        return false;
     }
     
     function applyInteractions(selector, validFn) {
@@ -34,7 +40,8 @@ function init() {
     }
     
     applyInteractions('#nameInput', checkNameInput);
-
+    applyInteractions('#phoneInput', checkPhoneInput);
+    applyInteractions('#addressInput', checkAddressInput);
 }
 
 exports.init = init;
