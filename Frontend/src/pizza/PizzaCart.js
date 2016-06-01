@@ -3,6 +3,7 @@
  */
 var Templates = require('../Templates');
 var Storage	= require('./storage');
+var Api = require('../API');
 
 //Перелік розмірів піци
 var PizzaSize = {

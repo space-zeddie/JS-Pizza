@@ -4,9 +4,21 @@
 var Templates = require('../Templates');
 var PizzaCart = require('./PizzaCart');
 var Pizza_List = require('../Pizza_List');
+var Api = require('../API');
 
 //HTML едемент куди будуть додаватися піци
 var $pizza_list = $("#pizza_list");
+
+function getPizzas(err, data) {
+    if (!err)
+        Pizza_List = data;
+}
+
+Api.getPizzaList(function (err, data) {
+    if (!err)
+        Pizza_List = data;
+});
+alert(Pizza_List);
 
 function showPizzaList(list) {
     //Очищаємо старі піци в кошику

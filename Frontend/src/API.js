@@ -8,6 +8,7 @@ function backendGet(url, callback) {
         url: API_URL + url,
         type: 'GET',
         success: function(data){
+            //alert(JSON.stringify(data));
             callback(null, data);
         },
         fail: function() {
