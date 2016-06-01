@@ -3,10 +3,12 @@
  */
 exports.mainPage = function(req, res) {
     res.render('mainPage', {
-        pageTitle: 'Вибір Піци'
+        pageTitle: 'Menu'
     });
 };
 
 exports.orderPage = function(req, res) {
-    //TODO: implement
+    res.render('order', {
+        pageTitle: 'Order'
+    });
 };

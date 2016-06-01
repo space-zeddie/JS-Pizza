@@ -346,7 +346,6 @@ Api.getPizzaList(function (err, data) {
     if (!err)
         Pizza_List = data;
 });
-alert(Pizza_List);
 
 function showPizzaList(list) {
     //Очищаємо старі піци в кошику
