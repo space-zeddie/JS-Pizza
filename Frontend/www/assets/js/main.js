@@ -175,7 +175,7 @@ exports.PizzaMenu_OneItem = ejs.compile("<%\n\nfunction getIngredientsArray(pizz
 
 exports.PizzaCart_OneItem = ejs.compile("<div class=\"cart-item\">\n    <span class=\"title\"><%= pizza.title %> (<%= size %>)</span>\n    <div class=\"price\"><%= pizza[size].price %> USD</div>\n    <div class=\"button-group\">\n        <button class=\"btn btn-danger minus\">-</button>\n        <span class=\"label label-default\"><%= quantity %></span>\n        <button class=\"btn btn-success plus\">+</button>\n        <button class=\"btn btn-warning remove\">x</button>\n    </div>\n</div>");
 
-},{"ejs":9}],4:[function(require,module,exports){
+},{"ejs":10}],4:[function(require,module,exports){
 /**
  * Created by chaika on 25.01.16.
  */
@@ -185,13 +185,55 @@ $(function(){
     var PizzaMenu = require('./pizza/PizzaMenu');
     var PizzaCart = require('./pizza/PizzaCart');
     var Pizza_List = require('./Pizza_List');
+    var Order = require('./pizza/Order');
 
     PizzaCart.initialiseCart();
     PizzaMenu.initialiseMenu();
-
+    Order.init();
 
 });
-},{"./Pizza_List":2,"./pizza/PizzaCart":5,"./pizza/PizzaMenu":6}],5:[function(require,module,exports){
+},{"./Pizza_List":2,"./pizza/Order":5,"./pizza/PizzaCart":6,"./pizza/PizzaMenu":7}],5:[function(require,module,exports){
+function init() {
+    
+    function checkNameInput(input) {
+        var letters = /^[A-Za-z]+$/;
+        if (input !== '' && input.match(letters))
+            return true;
+        return false;
+    }
+
+    function checkPhoneInput(input) {
+        return true;
+    }
+
+    function checkAddressInput(input) {
+        return true;
+    }
+    
+    function applyInteractions(selector, validFn) {
+        $(selector).keyup(function(e) {
+            var val = $(this).val();
+            if ($(this).parent().hasClass('has-success'))
+                $(this).parent().removeClass('has-success');
+            if (!validFn(val))
+                $(this).parent().addClass('has-error');
+            else if ($(this).parent().hasClass('has-error'))
+                $(this).parent().removeClass('has-error');
+        });
+        $(selector).focusout(function (e) {
+            var val = $(this).val();
+            if (validFn(val)) {
+                $(this).parent().addClass('has-success');    
+            }
+        });
+    }
+    
+    applyInteractions('#nameInput', checkNameInput);
+
+}
+
+exports.init = init;
+},{}],6:[function(require,module,exports){
 /**
  * Created by chaika on 02.02.16.
  */
@@ -325,7 +367,7 @@ exports.getPizzaInCart = getPizzaInCart;
 exports.initialiseCart = initialiseCart;
 
 exports.PizzaSize = PizzaSize;
-},{"../API":1,"../Templates":3,"./storage":7}],6:[function(require,module,exports){
+},{"../API":1,"../Templates":3,"./storage":8}],7:[function(require,module,exports){
 /**
  * Created by chaika on 02.02.16.
  */
@@ -393,7 +435,7 @@ function initialiseMenu() {
 
 exports.filterPizza = filterPizza;
 exports.initialiseMenu = initialiseMenu;
-},{"../API":1,"../Pizza_List":2,"../Templates":3,"./PizzaCart":5}],7:[function(require,module,exports){
+},{"../API":1,"../Pizza_List":2,"../Templates":3,"./PizzaCart":6}],8:[function(require,module,exports){
 var basil = require('basil.js');
 
 basil =	new	basil();
@@ -405,7 +447,7 @@ exports.get = function(key)	{
 exports.set = function(key,	value) {
     return basil.set(key, value);
 };
-},{"basil.js":8}],8:[function(require,module,exports){
+},{"basil.js":9}],9:[function(require,module,exports){
 (function () {
 	// Basil
 	var Basil = function (options) {
@@ -774,7 +816,7 @@ exports.set = function(key,	value) {
 
 })();
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 /*
  * EJS Embedded JavaScript templates
  * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
@@ -1525,7 +1567,7 @@ if (typeof window != 'undefined') {
   window.ejs = exports;
 }
 
-},{"../package.json":11,"./utils":10,"fs":12,"path":13}],10:[function(require,module,exports){
+},{"../package.json":12,"./utils":11,"fs":13,"path":14}],11:[function(require,module,exports){
 /*
  * EJS Embedded JavaScript templates
  * Copyright 2112 Matthew Eernisse (mde@fleegix.org)
@@ -1668,7 +1710,7 @@ exports.cache = {
 };
 
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 module.exports={
   "name": "ejs",
   "description": "Embedded JavaScript templates",
@@ -1730,9 +1772,9 @@ module.exports={
   "_resolved": "https://registry.npmjs.org/ejs/-/ejs-2.4.1.tgz"
 }
 
-},{}],12:[function(require,module,exports){
-
 },{}],13:[function(require,module,exports){
+
+},{}],14:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -1960,7 +2002,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":14}],14:[function(require,module,exports){
+},{"_process":15}],15:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
