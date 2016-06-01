@@ -316,6 +316,12 @@ function initialiseCart() {
     }
     
     updateCart();
+    
+    $('#order').click(function (e) {
+        if (Cart.length < 1)
+            return;
+        document.location.href = '\order';
+    });
 }
 
 function getPizzaInCart() {
