@@ -193,6 +193,9 @@ $(function(){
 
 });
 },{"./Pizza_List":2,"./pizza/Order":5,"./pizza/PizzaCart":6,"./pizza/PizzaMenu":7}],5:[function(require,module,exports){
+var Api = require('../API');
+var PizzaCart = require('./PizzaCart');
+
 function init() {
     
     function checkNameInput(input) {
@@ -246,14 +249,18 @@ function init() {
     applyInteractions('#addressInput', checkAddressInput);
     
     $('#submit-order').click(function (e){
-        if (checkForFormFilling())
-            alert('Success!');
-        else alert('no success');
+        if (checkForFormFilling()) {
+            Api.createOrder(PizzaCart.getPizzaInCart(), function (err, data) {
+                if (!err)
+                    alert(JSON.stringify(PizzaCart.getPizzaInCart()));
+            });
+        }
+        else alert('Something went wrong. Try again.');
     });
 }
 
 exports.init = init;
-},{}],6:[function(require,module,exports){
+},{"../API":1,"./PizzaCart":6}],6:[function(require,module,exports){
 /**
  * Created by chaika on 02.02.16.
  */

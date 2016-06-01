@@ -1,3 +1,6 @@
+var Api = require('../API');
+var PizzaCart = require('./PizzaCart');
+
 function init() {
     
     function checkNameInput(input) {
@@ -51,9 +54,13 @@ function init() {
     applyInteractions('#addressInput', checkAddressInput);
     
     $('#submit-order').click(function (e){
-        if (checkForFormFilling())
-            alert('Success!');
-        else alert('no success');
+        if (checkForFormFilling()) {
+            Api.createOrder(PizzaCart.getPizzaInCart(), function (err, data) {
+                if (!err)
+                    alert(JSON.stringify(PizzaCart.getPizzaInCart()));
+            });
+        }
+        else alert('Something went wrong. Try again.');
     });
 }
 
