@@ -103,7 +103,7 @@ var pizza_info = [
         content: {
             brain: ['flight attendant', 'actress'],
             sauce: ['blackberry sauce'],
-            bodyparts: ['steamed eyeballs'],
+            bodyparts: ['eyeballs'],
             additional: ['aquafaba cream', 'blackberries', 'blackcurrant']
         },
         small_size:{
@@ -142,11 +142,11 @@ var pizza_info = [
         id:5,
         icon:'assets/images/cocktail.png',
         title: "Oneshot",
-        type: 'Zombie drink',
+        type: 'Zombie Drink',
         content: {
             brain: ['fraternity brother', 'sorority sister'],
             toppings: ['gin', 'tonic water', 'lime juice'],
-            bodyparts: ['pickled eyeballs'],
+            bodyparts: ['eyeballs'],
             additional: ['syrup']
         },
         small_size:{
@@ -186,7 +186,7 @@ $(function(){
     var PizzaCart = require('./pizza/PizzaCart');
     var Pizza_List = require('./Pizza_List');
     var Order = require('./pizza/Order');
-
+    
     PizzaCart.initialiseCart();
     PizzaMenu.initialiseMenu();
     Order.init();
@@ -197,6 +197,9 @@ var Api = require('../API');
 var PizzaCart = require('./PizzaCart');
 
 function init() {
+    
+    if (document.location.href === '/order')
+        $('#order').text('Edit Order');
     
     function checkNameInput(input) {
         var letters = /^[A-Za-z]+$/;
@@ -327,7 +330,12 @@ function initialiseCart() {
     $('#order').click(function (e) {
         if (Cart.length < 1)
             return;
-        document.location.href = '\order';
+        if (document.location.href !== '/order') {
+            document.location.href = '/order';
+        }
+        else {
+            document.location.href = '/';
+        }
     });
 }
 
@@ -446,15 +454,47 @@ function showPizzaList(list) {
     list.forEach(showOnePizza);
 }
 
+var filters = {
+    noFilter: noFilter,
+    dessertFilter: dessertFilter,
+    veganFilter: veganFilter,
+    drinkFilter: drinkFilter,
+    newFilter: newFilter
+};
+
+function noFilter(pizza) { return true; }
+    
+function veganFilter(pizza) {
+    if (pizza.type.toLowerCase().indexOf('vegan') > -1)
+        return true;
+    return false;
+}
+
+function drinkFilter(pizza) {
+ //   alert(JSON.stringify(pizza));
+    if (pizza.type.toLowerCase().indexOf('drink') > -1)
+        return true;
+    return false;
+}
+
+function newFilter(pizza) {
+    if (pizza.is_new || pizza.is_popular) return true;
+    return false;
+}
+
+function dessertFilter(pizza) {
+    if (pizza.type.toLowerCase().indexOf('dessert') > -1) 
+        return true;
+    return false;
+}
+
 function filterPizza(filter) {
     //Масив куди потраплять піци які треба показати
     var pizza_shown = [];
 
     Pizza_List.forEach(function(pizza){
-        //Якщо піка відповідає фільтру
-        //pizza_shown.push(pizza);
-
-        //TODO: зробити фільтри
+        if (filter(pizza))
+            pizza_shown.push(pizza);
     });
 
     //Показати відфільтровані піци
@@ -463,7 +503,28 @@ function filterPizza(filter) {
 
 function initialiseMenu() {
     //Показуємо усі піци
-    showPizzaList(Pizza_List)
+    showPizzaList(Pizza_List);
+    
+    var $navigation = $('.nav.filter-nav');
+    $('.nav.filter-nav > li').each(function (i, el) {
+        switch(i) {
+            case 0: 
+                $(el).click(function () { filterPizza(filters.noFilter); });
+                break;
+            case 1: 
+                $(el).click(function () { filterPizza(filters.dessertFilter); });
+                break;
+            case 2: 
+                $(el).click(function () { filterPizza(filters.newFilter); });
+                break;
+            case 3: 
+                $(el).click(function () { filterPizza(filters.veganFilter); });
+                break;
+            case 4: 
+                $(el).click(function () { filterPizza(filters.drinkFilter); });
+                break;
+        }
+    });
 }
 
 exports.filterPizza = filterPizza;

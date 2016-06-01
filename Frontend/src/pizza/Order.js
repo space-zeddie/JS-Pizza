@@ -3,6 +3,9 @@ var PizzaCart = require('./PizzaCart');
 
 function init() {
     
+    if (document.location.href === '/order')
+        $('#order').text('Edit Order');
+    
     function checkNameInput(input) {
         var letters = /^[A-Za-z]+$/;
         if (input !== '' && input.match(letters))

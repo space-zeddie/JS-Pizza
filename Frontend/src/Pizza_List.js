@@ -60,7 +60,7 @@ var pizza_info = [
         content: {
             brain: ['flight attendant', 'actress'],
             sauce: ['blackberry sauce'],
-            bodyparts: ['steamed eyeballs'],
+            bodyparts: ['eyeballs'],
             additional: ['aquafaba cream', 'blackberries', 'blackcurrant']
         },
         small_size:{
@@ -99,11 +99,11 @@ var pizza_info = [
         id:5,
         icon:'assets/images/cocktail.png',
         title: "Oneshot",
-        type: 'Zombie drink',
+        type: 'Zombie Drink',
         content: {
             brain: ['fraternity brother', 'sorority sister'],
             toppings: ['gin', 'tonic water', 'lime juice'],
-            bodyparts: ['pickled eyeballs'],
+            bodyparts: ['eyeballs'],
             additional: ['syrup']
         },
         small_size:{

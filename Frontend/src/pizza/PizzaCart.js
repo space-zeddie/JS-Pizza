@@ -64,7 +64,12 @@ function initialiseCart() {
     $('#order').click(function (e) {
         if (Cart.length < 1)
             return;
-        document.location.href = '\order';
+        if (document.location.href !== '/order') {
+            document.location.href = '/order';
+        }
+        else {
+            document.location.href = '/';
+        }
     });
 }
 
