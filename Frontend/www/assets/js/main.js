@@ -216,6 +216,13 @@ function init() {
         return false;
     }
     
+    function checkForFormFilling() {
+        if ($('#nameInput').parent().hasClass('has-success') && $('#phoneInput').parent().hasClass('has-success')
+            && $('#addressInput').parent().hasClass('has-success'))
+            return true;
+        return false;
+    }
+    
     function applyInteractions(selector, validFn) {
         $(selector).keyup(function(e) {
             var val = $(this).val();
@@ -237,6 +244,12 @@ function init() {
     applyInteractions('#nameInput', checkNameInput);
     applyInteractions('#phoneInput', checkPhoneInput);
     applyInteractions('#addressInput', checkAddressInput);
+    
+    $('#submit-order').click(function (e){
+        if (checkForFormFilling())
+            alert('Success!');
+        else alert('no success');
+    });
 }
 
 exports.init = init;
