@@ -98,19 +98,34 @@ function initialiseMenu() {
     $('.nav.filter-nav > li').each(function (i, el) {
         switch(i) {
             case 0: 
-                $(el).click(function () { filterPizza(filters.noFilter); });
+                $(el).click(function () { 
+                    filterPizza(filters.noFilter);
+                    $('.nav-title').text($(this).text());
+                });
                 break;
             case 1: 
-                $(el).click(function () { filterPizza(filters.dessertFilter); });
+                $(el).click(function () { 
+                    filterPizza(filters.dessertFilter);
+                    $('.nav-title').text($(this).text());
+                });
                 break;
             case 2: 
-                $(el).click(function () { filterPizza(filters.newFilter); });
+                $(el).click(function () { 
+                    filterPizza(filters.newFilter); 
+                    $('.nav-title').text($(this).text());
+                });
                 break;
             case 3: 
-                $(el).click(function () { filterPizza(filters.veganFilter); });
+                $(el).click(function () { 
+                    filterPizza(filters.veganFilter); 
+                    $('.nav-title').text($(this).text());
+                });
                 break;
             case 4: 
-                $(el).click(function () { filterPizza(filters.drinkFilter); });
+                $(el).click(function () { 
+                    filterPizza(filters.drinkFilter);
+                    $('.nav-title').text($(this).text());
+                });
                 break;
         }
     });
