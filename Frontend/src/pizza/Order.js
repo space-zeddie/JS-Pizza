@@ -1,9 +1,69 @@
 var Api = require('../API');
 var PizzaCart = require('./PizzaCart');
-var map = null;
-var marker = null;
 
 function init() {
+    var map = null;
+    var geocodeAddress = function(address, callback) {};
+    
+    function initialize() {
+        var marker = null;
+        
+        function setMarker(point) {
+            if (marker)
+                marker.setMap(null);
+            marker = new google.maps.Marker({
+                position: point,
+                map: map,
+                icon: "assets/images/map-icon.png"
+            });
+        }
+        //Тут починаємо працювати з картою
+        var mapProp = {
+            center: new google.maps.LatLng(50.464379,30.519131),
+            zoom: 15
+        };
+        var html_element = document.getElementById("googleMap");
+        map = new google.maps.Map(html_element, mapProp);
+        //Карта створена і показана
+        setMarker(new google.maps.LatLng(50.464379,30.519131));
+        
+        function geocodeLatLng(latlng, callback){
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({'location': latlng}, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK && results[1]) {
+                    var adress = results[1].formatted_address;
+                    callback(null, adress);
+                } else {
+                    callback(new Error("Can't find adress"));
+                }
+            });
+        }
+        
+        geocodeAddress = function (address, callback) {
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({'address': address}, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK && results[0]) {
+                    var coordinates = results[0].geometry.location;
+                    callback(null, coordinates);
+                } else {
+                    callback(new Error("Can not find the adress"));
+                }
+            });
+        };
+        
+        google.maps.event.addListener(map, 'click', function(me){
+            var coordinates = me.latLng;
+            setMarker(coordinates);
+            geocodeLatLng(coordinates, function(err, adress) {
+                if(!err) {
+                    fillAddress(adress);
+                } else {
+                    console.log("Немає адреси")
+                }
+            });
+        });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
     
     if (document.location.href === '/order')
         $('#order').text('Edit Order');
@@ -23,8 +83,7 @@ function init() {
     }
 
     function checkAddressInput(input) {
-        var letters = /^[A-Za-z]+$/;
-        if (input !== '' && input.match(letters))
+        if (input !== '')
             return true;
         return false;
     }
@@ -50,6 +109,14 @@ function init() {
             var val = $(this).val();
             if (validFn(val)) {
                 $(this).parent().addClass('has-success');    
+                if (selector === '#addressInput') {
+                    fillAddress(val);
+                    geocodeAddress(val, function(err, coord){
+                        if (!err)
+                            alert(coord);
+                        else alert('no address found');
+                    });
+                }
             }
         });
     }
@@ -68,33 +135,13 @@ function init() {
         else alert('Something went wrong. Try again.');
     });
     
-    function setMarker(point) {
-        marker = new google.maps.Marker({
-            position: point,
-            map: map,
-            icon: "assets/images/map-icon.png"
-        });
-    }
-    
-    function initialize() {
-        //Тут починаємо працювати з картою
-        var mapProp = {
-            center: new google.maps.LatLng(50.464379,30.519131),
-            zoom: 15
-        };
-        var html_element = document.getElementById("googleMap");
-        map = new google.maps.Map(html_element, mapProp);
-        //Карта створена і показана
-        setMarker(new google.maps.LatLng(50.464379,30.519131));
+    function fillAddress(address) {
+        var $field = $('#addressInput');
+        var $info = $('#order-address');
         
-        google.maps.event.addListener(map, 'click', function(me){
-            var coordinates = me.latLng;
-            alert(coordinates);
-            marker.setMap(null);
-            setMarker(coordinates);
-        });
+        $field.val(address);
+        $info.text(address);
     }
-    google.maps.event.addDomListener(window, 'load', initialize);
     
 }
 
