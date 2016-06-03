@@ -203,6 +203,7 @@ function init() {
     
     function initialize() {
         var marker = null;
+        var homeCoord = new google.maps.LatLng(50.464379,30.519131)
         
         setMarker = function (point) {
             if (marker)
@@ -221,7 +222,11 @@ function init() {
         var html_element = document.getElementById("googleMap");
         map = new google.maps.Map(html_element, mapProp);
         //Карта створена і показана
-        setMarker(new google.maps.LatLng(50.464379,30.519131));
+        var homeMarker = new google.maps.Marker({
+            position: homeCoord,
+            map: map,
+            icon: "assets/images/home-icon.png"
+        });
         
         function geocodeLatLng(latlng, callback){
             var geocoder = new google.maps.Geocoder();
