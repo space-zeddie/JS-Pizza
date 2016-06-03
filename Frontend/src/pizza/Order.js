@@ -16,12 +16,21 @@ function init() {
             marker = new google.maps.Marker({
                 position: point,
                 map: map,
+                animation: google.maps.Animation.DROP,
                 icon: "assets/images/map-icon.png"
             });
             calculateRoute(homeCoord, point, function(err, duration) {
                 if (!err) {
                     console.log(duration);
                     $('#order-time').text(duration.duration.text);
+                  /*  var path = new google.maps.Polyline({
+                        path: [homeCoord, point],
+                        geodesic: true,
+                        strokeColor: '#FF0000',
+                        strokeOpacity: 1.0,
+                        strokeWeight: 2
+                    });
+                    path.setMap(map);*/
                 } else
                     console.log("could not determine the duration");
             });
