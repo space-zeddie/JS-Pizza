@@ -18,6 +18,13 @@ function init() {
                 map: map,
                 icon: "assets/images/map-icon.png"
             });
+            calculateRoute(homeCoord, point, function(err, duration) {
+                if (!err) {
+                    console.log(duration);
+                    $('#order-time').text(duration.duration.text);
+                } else
+                    console.log("could not determine the duration");
+            });
         }
         //Тут починаємо працювати з картою
         var mapProp = {
@@ -56,6 +63,24 @@ function init() {
                 }
             });
         };
+        
+        function calculateRoute(A_latlng, B_latlng, callback) {
+            var directionService = new google.maps.DirectionsService();
+            directionService.route({
+                origin: A_latlng,
+                destination: B_latlng,
+                travelMode: google.maps.TravelMode["DRIVING"]
+            }, function(response, status) {
+                if ( status == google.maps.DirectionsStatus.OK ) {
+                    var leg = response.routes[ 0 ].legs[ 0 ];
+                    callback(null, {
+                        duration: leg.duration
+                    });
+                } else {
+                    callback(new Error("Can' not find direction"));
+                }
+            });
+        }
         
         google.maps.event.addListener(map, 'click', function(me){
             var coordinates = me.latLng;
