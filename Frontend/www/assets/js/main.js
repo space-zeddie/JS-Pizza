@@ -199,11 +199,12 @@ var PizzaCart = require('./PizzaCart');
 function init() {
     var map = null;
     var geocodeAddress = function(address, callback) {};
+    var setMarker = function(point) {};
     
     function initialize() {
         var marker = null;
         
-        function setMarker(point) {
+        setMarker = function (point) {
             if (marker)
                 marker.setMap(null);
             marker = new google.maps.Marker({
@@ -308,8 +309,8 @@ function init() {
                     fillAddress(val);
                     geocodeAddress(val, function(err, coord){
                         if (!err)
-                            alert(coord);
-                        else alert('no address found');
+                            setMarker(coord);
+                        else console.log('no address found');
                     });
                 }
             }
