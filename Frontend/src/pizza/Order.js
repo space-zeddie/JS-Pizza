@@ -195,12 +195,20 @@ function init() {
     applyInteractions('#phoneInput', checkPhoneInput);
     applyInteractions('#addressInput', checkAddressInput);
     
+    function getCustomer() {
+        return {
+            name: $('#nameInput').val(),
+            phone: $('#phoneInput').val(),
+            address: $('#addressInput').val()
+        };
+    }
+    
     $('#submit-order').click(function (e){
         if (checkForFormFilling()) {
             Api.createOrder(PizzaCart.getPizzaInCart(), function (err, data) {
                 if (!err) {
                   //  alert(JSON.stringify(PizzaCart.getPizzaInCart()));
-                    fileOrder(PizzaCart.getPizzaInCart());
+                    fileOrder(PizzaCart.getPizzaInCart(), getCustomer());
                 } else {
                     console.log('error');
                 }
@@ -217,9 +225,11 @@ function init() {
         $info.text(address);
     }
     
-    function fileOrder(items) {
+    function fileOrder(items, customer) {
         var totalPrice = 0;
         var descr = '' + today() + ':\n';
+        alert(JSON.stringify(customer));
+        descr += customer.name + ', ' + customer.phone + ', ' + customer.address + '\n';
         items.forEach(function (item) {
             totalPrice += item.pizza[item.size].price * item.quantity;
             descr += item.quantity + ' x "' + item.pizza.title + '", ' + item.size + '\n';
