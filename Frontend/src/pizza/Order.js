@@ -1,10 +1,40 @@
 var Api = require('../API');
 var PizzaCart = require('./PizzaCart');
 
+function base64(str) {
+    return new Buffer(str).toString('base64');
+}
+var crypto = require('crypto');
+function sha1(string) {
+    var sha1 = crypto.createHash('sha1');
+    sha1.update(string);
+    return sha1.digest('base64');
+}
+
+function today() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd < 10) {
+        dd = '0' + dd
+    }    
+
+    if(mm < 10) {
+        mm = '0' + mm
+    }    
+
+    return mm+'/'+dd+'/'+yyyy;
+}
+
 function init() {
     var map = null;
     var geocodeAddress = function(address, callback) {};
     var setMarker = function(point) {};
+    var PUBLIC_KEY = 'i93445480062';
+    var PRIVATE_KEY = '3RALW5X7VEO0KdeY8mhOKGrLDh0RqfRNqljDgVaX';
+    
     
     function initialize() {
         var marker = null;
@@ -97,6 +127,7 @@ function init() {
             geocodeLatLng(coordinates, function(err, adress) {
                 if(!err) {
                     fillAddress(adress);
+                    $('#addressInput').parent().addClass('has-success');  
                 } else {
                     console.log("Немає адреси")
                 }
@@ -104,9 +135,6 @@ function init() {
         });
     }
     google.maps.event.addDomListener(window, 'load', initialize);
-    
-    if (document.location.href === '/order')
-        $('#order').text('Edit Order');
     
     function checkNameInput(input) {
         var letters = /^[A-Za-z]+$/;
@@ -142,8 +170,10 @@ function init() {
                 $(this).parent().removeClass('has-success');
             if (!validFn(val))
                 $(this).parent().addClass('has-error');
-            else if ($(this).parent().hasClass('has-error'))
+            else if ($(this).parent().hasClass('has-error')) {
                 $(this).parent().removeClass('has-error');
+                $(this).parent().addClass('has-success');  
+            }
         });
         $(selector).focusout(function (e) {
             var val = $(this).val();
@@ -168,8 +198,12 @@ function init() {
     $('#submit-order').click(function (e){
         if (checkForFormFilling()) {
             Api.createOrder(PizzaCart.getPizzaInCart(), function (err, data) {
-                if (!err)
-                    alert(JSON.stringify(PizzaCart.getPizzaInCart()));
+                if (!err) {
+                  //  alert(JSON.stringify(PizzaCart.getPizzaInCart()));
+                    fileOrder(PizzaCart.getPizzaInCart());
+                } else {
+                    console.log('error');
+                }
             });
         }
         else alert('Something went wrong. Try again.');
@@ -181,6 +215,42 @@ function init() {
         
         $field.val(address);
         $info.text(address);
+    }
+    
+    function fileOrder(items) {
+        var totalPrice = 0;
+        var descr = '' + today() + ':\n';
+        items.forEach(function (item) {
+            totalPrice += item.pizza[item.size].price * item.quantity;
+            descr += item.quantity + ' x "' + item.pizza.title + '", ' + item.size + '\n';
+        });
+        
+        var order = {
+            version: 3,
+            public_key: PUBLIC_KEY,
+            action: "pay",
+            amount: totalPrice,
+            currency: "UAH",
+            description: descr,
+            order_id: ("" + Math.random()).substr(2),
+            sandbox: 1
+        };
+        var data = base64(JSON.stringify(order));
+        var signature = base64(sha1(PRIVATE_KEY + data + PRIVATE_KEY));
+        console.log(order);
+        LiqPayCheckout.init({
+            data: order,
+            signature: signature,
+            embedTo: "#liqpay",
+            mode: "popup" // embed || popup
+        }).on("liqpay.callback", function(data){
+            console.log(data.status);
+            console.log(data);
+        }).on("liqpay.ready", function(data){
+            console.log(data);
+        }).on("liqpay.close", function(data){
+            console.log(data);
+        });
     }
     
 }
