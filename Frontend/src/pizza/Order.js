@@ -47,7 +47,7 @@ function init() {
                 position: point,
                 map: map,
                 animation: google.maps.Animation.DROP,
-                icon: "assets/images/map-icon.png"
+                icon: "assets/images/pointer.png"
             });
             calculateRoute(homeCoord, point, function(err, duration) {
                 if (!err) {
